@@ -434,13 +434,13 @@ function netGetDefaultGateway
   local error_function_=${1:-"eprint"}    # function to call on error
   local message_="$2"    # user supplied error message
   
-  local LANG=C
-  local LC_ALL=C
   local ip_=''
   local ret_=''
   
+  setCLang
   ip_=`route -n | awk '/^0\.0\.0\.0/{print $2; exit}'`
   ret_=$?
+  restoreLang
   if [ -z "$ip_" ]; then
     if [ -z "$message_" ]; then
       "$error_function_" "no default gateway found" $ret_
@@ -461,13 +461,13 @@ function netGetNetmask
   local error_function_=${2:-"eprint"}    # function to call on error
   local message_="$3"    # user supplied error message
   
-  local LANG=C
-  local LC_ALL=C
   local nm_=''
   local ret_=''
   
+  setCLang
   nm_=`ifconfig "$iface_" | awk '/[Mm]ask/{FS="[:   ]*"; $0=$0; print $8; exit}'`
   ret_=$?
+  restoreLang
   if [ -z "$nm_" ]; then
     if [ -z "$message_" ]; then
       "$error_function_" "could not find a netmask for \"$iface_\"" $ret_
@@ -488,14 +488,14 @@ function netGetIp
   local error_function_=${2:-"eprint"}    # function to call on error
   local message_="$3"    # user supplied error message
 
-  local LANG=C
-  local LC_ALL=C
   local ip_=""
   local ret_=""
 
+  setCLang
   #ip_=`ip addr list eth0 |mawk '/inet/{split($2,A,"/"); print A[1]}'`
   ip_=`ifconfig "$iface_" | awk '/[Ii]net [Aa]ddr/{FS="[:  ]*"; $0=$0; print $4; exit}'`
   ret_=$?
+  restoreLang
   if [ -z "$ip_" ]; then
     if [ -z "$message_" ]; then
       "$error_function_" "no ip for \"$iface_\" found" $ret_
@@ -522,7 +522,9 @@ function netGetNameservers
     return 1
   fi
   
+  setCLang
   ns_=`awk '/^nameserver/{printf "%s ",$2}' $file_`
+  restoreLang
   if [ -z "$ns_" ]; then
     if [ -z "$message_" ]; then
       "$error_function_" "no nameservers found" $ret_
