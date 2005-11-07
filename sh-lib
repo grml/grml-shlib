@@ -25,6 +25,9 @@ SYSLOG__="YES"
 
 CMD_LINE__=""   # /proc/cmdline
 
+LANG__="$LANG"
+LC_ALL__="$LC_ALL"
+
 
 # CONFIG FUNCTIONS  {{{
 
@@ -34,6 +37,10 @@ function setExitFunction  { EXIT_FUNCTION__="$1"; }
 
 function disableSyslog  { SYSLOG__="NO";  }
 function enableSyslog   { SYSLOG__="YES"; }
+
+function saveLang { LANG__="$LANG"; LC_ALL__="$LC_ALL"; }
+function restoreLang { LANG="$LANG__"; LC_ALL="$LC_ALL__"; }
+function setCLang { saveLang; LANG="C"; LC_ALL="C"; }
 # }}}
 
 
