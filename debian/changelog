@@ -1,0 +1,90 @@
+sh-lib (1.02.04) unstable; urgency=low
+
+  * added TODO 
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Wed,  5 Oct 2005 18:42:31 +0200
+
+sh-lib (1.02.03) unstable; urgency=low
+
+  * fixed problems with definition of variables
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Sun, 25 Sep 2005 23:12:58 +0200
+
+sh-lib (1.02.02) unstable; urgency=high
+
+  * fixed a few variable definitions (make nearly all local) 
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Mon, 15 Aug 2005 01:58:55 +0200
+
+sh-lib (1.02.01) unstable; urgency=low
+
+  * fixed error in findNextFreeLoop()
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Fri, 12 Aug 2005 21:03:14 +0200
+
+sh-lib (1.02.00) unstable; urgency=low
+
+  * added findNextFreeLoop() to search the next free loop device
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Tue,  9 Aug 2005 16:23:30 +0200
+
+sh-lib (1.01.00) unstable; urgency=low
+
+  * new upstream :D
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Tue,  9 Aug 2005 15:54:39 +0200
+
+sh-lib (1.00-7) unstable; urgency=low
+
+  * fixed checkRoot()
+  * fixed message -> message_ in isExistent(), isNotExistent(), checkUser(),
+    checkId() 
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Sun,  8 May 2005 16:20:21 +0200
+
+sh-lib (1.00-6) unstable; urgency=low
+
+  * fixed a small typo 
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Sun, 10 Apr 2005 13:36:49 +0200
+
+sh-lib (1.00-5) unstable; urgency=low
+
+  * get the right depencencies into the .deb 
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Wed,  6 Apr 2005 02:33:35 +0200
+
+sh-lib (1.00-4) unstable; urgency=low
+
+  * Fixed a few small typos 
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Sat, 19 Feb 2005 00:45:44 +0100
+
+sh-lib (1.00-3) unstable; urgency=low
+
+  * removed _checkExecutables() in INIT because it's braindamage
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Wed, 16 Feb 2005 01:00:47 +0100
+
+sh-lib (1.00-2) unstable; urgency=low
+
+  * WARN: fixed typo, runsFromCD() => runsFromCd()
+  * fixed a small typo in checkID for error reporting
+  * fixed problem in sh-lib init functions for $PROG_NAME__
+  * lib intern logging function is now _syslog()
+  * added syslog() (not influenced by $SYSLOG__)
+  * added netValidIp() for validating ip addresses
+  * added netGetDefaultGateway()
+  * added netGetNetmask()
+  * added netGetIp()
+  * added netGetNameservers()
+  * added notice() for program notice messages
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Mon, 14 Feb 2005 00:55:39 +0100
+
+sh-lib (1.00-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Sun, 13 Feb 2005 17:57:20 +0100
+

@@ -1,0 +1,19 @@
+ * service{Start,Stop,Restart} <name from /etc/init.d/>
+ * wrapper arround pgrep
+ * function to set C environment (lang)
+ * debug over function (setdebug), von außen DEBUG=x 1:1 übersetzung nach verbose
+ * paket umbenennen nach grml-shlib
+ * execute (secureInput verbessern) @mika
+ * getUserName <id> (is this user available on this system)
+ * update relToAbs (readlink -f)
+
+function zsh_clear_env () {
+  for V in `set +`; do case "$V" in
+    '!'|'$'|'*'|'@'|'?'|'-'|'#'|[0-9]|V);;
+    **) typeset +r "$V"; unset "$V";;
+  esac; done
+  unset V
+  emulate zsh
+  export IFS=" \t\n"
+  export PATH="/bin:/usr/bin:/sbin:/usr/sbin"
+}
