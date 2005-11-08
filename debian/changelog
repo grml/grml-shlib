@@ -1,8 +1,10 @@
 sh-lib (1.02.04) unstable; urgency=low
 
   * added TODO 
+  * added iproute to dependencies (ip)
+  * added netGetIfaces()
 
- -- Michael Gebetsroither <michael.geb@gmx.at>  Wed,  5 Oct 2005 18:42:31 +0200
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Tue,  8 Nov 2005 18:10:49 +0100
 
 sh-lib (1.02.03) unstable; urgency=low
 

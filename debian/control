@@ -7,6 +7,6 @@ Standards-Version: 3.6.1
 
 Package: sh-lib
 Architecture: all
-Depends: ${misc:Depends}, procps, net-tools, gawk
+Depends: ${misc:Depends}, procps, net-tools, gawk, iproute
 Description: Generic shell library
  The sh-lib is developed on zsh, only partially tested on bash.

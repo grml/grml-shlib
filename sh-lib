@@ -428,6 +428,28 @@ function netValidIp
   return $ret_
 }
 
+function netGetIfaces
+{
+	local error_function_=${1:-"eprint"}    # function to call on error
+	local message_="$2"    # user supplied error message
+	local if_=''
+	local ret_=''
+
+	#ip a|grep 'inet ' |awk '$NF !~ /lo/{print $NF}'
+	if_="`ip a|grep 'inet ' |awk '{print $NF}'`"
+	ret_=$?
+	if [ -z "$if_" ]; then
+		if [ -z "$message_" ]; then
+			"$error_function_" "no interfaces found" $ret_
+		else
+			"$error_function_" "$message_" $ret_
+		fi
+		return 1
+	fi
+	dprint "interfaces found" $ret_
+	echo "$if_"
+}
+
 # FIXME
 function netGetDefaultGateway
 {
