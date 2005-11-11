@@ -1,3 +1,9 @@
+grml-shlib (1.02.05) unstable; urgency=low
+
+  * rename
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Fri, 11 Nov 2005 19:39:49 +0100
+
 sh-lib (1.02.04) unstable; urgency=low
 
   * added TODO 

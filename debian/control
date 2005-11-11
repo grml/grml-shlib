@@ -1,12 +1,14 @@
-Source: sh-lib
-Section: main
+Source: grml-shlib
+Section: grml
 Priority: optional
 Maintainer: Michael Gebetsroither <michael.geb@gmx.at>
 Build-Depends: debhelper (>= 4.0.0)
-Standards-Version: 3.6.1
+Standards-Version: 3.6.2
 
-Package: sh-lib
+Package: grml-shlib
 Architecture: all
 Depends: ${misc:Depends}, procps, net-tools, gawk, iproute
-Description: Generic shell library
- The sh-lib is developed on zsh, only partially tested on bash.
+Conflicts: sh-lib
+Replaces: sh-lib
+Description: Generic shell library used in grml scripts
+ The grml-shlib is developed on zsh, only partially tested on bash.

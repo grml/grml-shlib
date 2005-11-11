@@ -57,7 +57,7 @@ install: build
 
 	# Add here commands to install the package into debian/sh-lib.
 	#$(MAKE) install DESTDIR=$(CURDIR)/debian/sh-lib
-	cp sh-lib $(CURDIR)/debian/sh-lib/etc/grml/
+	cp sh-lib $(CURDIR)/debian/grml-shlib/etc/grml/
 
 
 # Build architecture-independent files here.

@@ -1,11 +1,18 @@
 This package was debianized by Michael Gebetsroither <michael.geb@gmx.at> on
 Sun, 13 Feb 2005 17:57:20 +0100.
 
-It was downloaded from http://einsteinmg.dyndns.org/projects/grml/sh-lib
+It is available at:
+  mercurial repos:  http://hg.einsteinmg.dyndns.org/grml-shlib
+  dev files:        http://einsteinmg.dyndns.org/hg/grml-shlib/
+  
 
 Copyright:
 
 Upstream Author: Michael Gebetsroither <michael.geb@gmx.at>
 
-License:
-GPLv2.
+You are free to distribute this software under the terms of the
+GNU General Public License (GPL) version 2.
+
+On Debian systems, the complete text of the GNU General Public
+License can be found in the file `/usr/share/common-licenses/GPL-2'.
+
