@@ -571,53 +571,51 @@ function netGetNameservers
 # SERVICES {{{
 function _touchService
 {
-  local action_="${1:-"start"}"
+  local action_="${1:-start}"
   local service_="$2"
   local error_function_=${3:-"eprint"}    # function to call on error
+  local message_="$4"     # user supplied error message
 
   local i=""
+  local known_action_='false'
   for i in "start" "stop" "restart" "reload" "force-reload"; do
     if [[ $i == $action_ ]]; then
+      known_action_='true'
       break
     fi
-    $error_function_ "unknown action: \"$action\""
-    return 1
   done
+  $known_action_ || warn "_touchService(): unknown action \"$action_\""
 
-  service_="${INITD_DIR__}/$service_"
-  if [ ! -e "$service_" ]; then
-    $error_function_ "service does not exist: \"$service_\""
+
+  local service_path_=""
+  service_path_="${INITD_DIR__}/$service_"
+  if [ ! -e "$service_path_" ]; then
+    warn "_touchService(): service does not exist: \"$service_\""
     return 1
   fi
-  if [ ! -x "$service_" ]; then
-    $error_function_ "service is not executable: \"$service_\""
+  if [ ! -x "$service_path_" ]; then
+    warn "_touchService(): service is not executable: \"$service_\""
   fi
   
-  "$service_" "$action_"
+  local ret_=""
+  "$service_path_" "$action_"
+  ret_=$?
+  if [[ $ret_ != 0 ]]; then
+    if [ -z "$message_" ]; then
+      "$error_function_" "Problems ${action_}ing service \"$service_\"" $ret_
+    else
+      "$error_function_" "$message_" $ret_
+    fi
+    return 1
+  fi
+  dprint "_touchService(): successfully started service \"$service_\""
+  return 0
 }
 
 function _createServiceFunctions
 {
   for i in "start" "stop" "restart" "reload" "force-reload"; do
-    eval "\
-function ${i}Service
-{
-  local service_=\"\$1\"
-  local error_function_=\${2:-\"eprint\"}    # function to call on error
-  local message_=\"\$3\"    # user supplied error message
-  
-  local ret_=\"\"
-  _touchService ${i} \"\$service_\"
-  ret_=\$?
-  if [[ \$ret_ != 0 ]]; then
-    if [ -z \"\$message_\" ]; then
-      \"\$error_function_\" \"Problems ${i}ing service \"\$service_\"\" \$ret_
-    else
-      \"\$error_function_\" \"\$message_\" \$ret_
-    fi
-    return 1
-  fi
-}"
+    eval "function ${i}Service { _touchService ${i} \"\$1\" \"\$2\" \"\$3\"; }"
   done
 }
 _createServiceFunctions

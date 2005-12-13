@@ -1,4 +1,3 @@
- * service{Start,Stop,Restart} <name from /etc/init.d/>
  * wrapper arround pgrep
  * execute (secureInput verbessern) @mika
  * getUserName <id> (is this user available on this system)
