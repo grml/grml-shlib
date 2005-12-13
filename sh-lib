@@ -565,6 +565,60 @@ function netGetNameservers
 
 # }}}
 
+# SERVICES {{{
+function _touchService
+{
+  local action_="${1:-"start"}"
+  local service_="$2"
+  local error_function_=${3:-"eprint"}    # function to call on error
+
+  local i=""
+  for i in "start" "stop" "restart" "reload" "force-reload"; do
+    if [[ $i == $action_ ]]; then
+      break
+    fi
+    $error_function_ "unknown action: \"$action\""
+    return 1
+  done
+
+  if [ ! -e "$service_" ]; then
+    $error_function_ "service does not exist: \"$service_\""
+    return 1
+  fi
+  if [ ! -x "$service_" ]; then
+    $error_function_ "service is not executable: \"$service_\""
+  fi
+  
+  /etc/init.d/$service_ $action_
+}
+
+function _createServiceFunctions
+{
+  for i in "start" "stop" "restart" "reload" "force-reload"; do
+    eval "\
+function ${i}Service
+{
+  local service_=\"\$1\"
+  local error_function_=\${2:-\"eprint\"}    # function to call on error
+  local message_=\"\$3\"    # user supplied error message
+  
+  local ret_=\"\"
+  _touchService ${i} \"\$service_\"
+  ret_=\$?
+  if [[ \$ret_ != 0 ]]; then
+    if [ -z \"\$message_\" ]; then
+      \"\$error_function_\" \"Problems ${i}ing service \"\$service_\"\" \$ret_
+    else
+      \"\$error_function_\" \"\$message_\" \$ret_
+    fi
+    return 1
+  fi
+}"
+  done
+}
+_createServiceFunctions
+
+# }}}
 
 # prints the next free /dev/loop* to stdout
 function findNextFreeLoop
