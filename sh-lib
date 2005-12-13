@@ -51,6 +51,9 @@ function unsetVerbose   { VERBOSE_TMP__=$VERBOSE__; VERBOSE__=0; }
 function restoreVerbose { VERBOSE__=$VERBOSE_TMP__; }
 function getVerbose     { echo "$VERBOSE__"; }
 
+function setDebug       { setVerbose "$DPRINT__"; }
+function unsetDebug     { restoreVerbose; }
+
 function setExitFunction    { EXIT_FUNCTION__="$1"; }
 function resetExitFunction  { EXIT_FUNCTION__="_syslog"; }
 # }}}
@@ -642,6 +645,14 @@ function _checkBootParam
   fi
   warnLog "$path_ does not exist, thus sh-lib may not work reliable!"
   return 1
+}
+_checkBootParam
+
+
+function _setDebugLevel
+{
+  local debug_="${DEBUG:-0}"
+  VERBOSE__="$debug_"
 }
 _checkBootParam
 # }}}

@@ -1,8 +1,5 @@
  * service{Start,Stop,Restart} <name from /etc/init.d/>
  * wrapper arround pgrep
- * function to set C environment (lang)
- * debug over function (setdebug), von außen DEBUG=x 1:1 übersetzung nach verbose
- * paket umbenennen nach grml-shlib
  * execute (secureInput verbessern) @mika
  * getUserName <id> (is this user available on this system)
  * update relToAbs (readlink -f)
