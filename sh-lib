@@ -347,18 +347,12 @@ function secureInput
 function relToAbs
 {
   local relpath_="$1"
-
-  local D_=''
-  local B_=''
   local abspath_=''
-  local end_path_=''
 
-  D_=`dirname "$relpath_"`
-  B_=`basename "$relpath_"`
-  abspath_=`cd "$D_" 2>/dev/null && pwd || echo "$D_"`/$B_
-  end_path_=`echo "$abspath_" |tr --squeeze-repeats /`
-  dprint "relToAbs(): \"$relpath_\" => \"$end_path_\""
-  echo "$end_path_"
+  abspath_="`readlink -f \"$relpath_\"`" || \
+    warn "relToAbs(): Problems getting absolute path" "$?" || return 1
+  dprint "relToAbs(): \"$relpath_\" => \"$abspath_\""
+  echo "$abspath_"
 }
 
 # Simple shell grep
@@ -571,7 +565,7 @@ function netGetNameservers
 # SERVICES {{{
 function _touchService
 {
-  local action_="${1:-start}"
+  local action_="${1:-"start"}"
   local service_="$2"
   local error_function_=${3:-"eprint"}    # function to call on error
   local message_="$4"     # user supplied error message

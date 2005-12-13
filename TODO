@@ -1,7 +1,6 @@
  * wrapper arround pgrep
  * execute (secureInput verbessern) @mika
  * getUserName <id> (is this user available on this system)
- * update relToAbs (readlink -f)
 
 function zsh_clear_env () {
   for V in `set +`; do case "$V" in
