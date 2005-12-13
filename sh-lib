@@ -648,4 +648,4 @@ _checkBootParam
 
 # END OF FILE
 ################################################################################
-# vim:foldmethod=marker
+# vim:foldmethod=marker expandtab shiftwidth=2 tabstop=2
