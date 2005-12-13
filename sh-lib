@@ -14,6 +14,9 @@ VERBOSE_TMP__=0
 # FIXME maybe PROG_PATH__ for better error reporting?
 PROG_NAME__=""    # initialised within init section
 
+# directory for init scripts
+INITD_DIR__="/etc/init.d/"
+
 # >= level and the function will print the message
 EPRINT__=1    # eprint (error print)
 EEPRINT__=2   # 2print (intern error print)
@@ -581,6 +584,7 @@ function _touchService
     return 1
   done
 
+  service_="${INITD_DIR__}/$service_"
   if [ ! -e "$service_" ]; then
     $error_function_ "service does not exist: \"$service_\""
     return 1
@@ -589,7 +593,7 @@ function _touchService
     $error_function_ "service is not executable: \"$service_\""
   fi
   
-  /etc/init.d/$service_ $action_
+  "$service_" "$action_"
 }
 
 function _createServiceFunctions
@@ -617,7 +621,6 @@ function ${i}Service
   done
 }
 _createServiceFunctions
-
 # }}}
 
 # prints the next free /dev/loop* to stdout
