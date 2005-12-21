@@ -1,7 +1,7 @@
 Source: grml-shlib
 Section: grml
 Priority: optional
-Maintainer: Michael Gebetsroither <michael.geb@gmx.at>
+Maintainer: Michael Gebetsroither <gebi@grml.org>
 Build-Depends: debhelper (>= 4.0.0)
 Standards-Version: 3.6.2
 
