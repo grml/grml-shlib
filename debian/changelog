@@ -1,3 +1,16 @@
+grml-shlib (1.02.06) unstable; urgency=low
+
+  * trim the list of nameservers from netGetNameserers (no ending whitespace)
+  * changed relToAbs to use readlink -f
+  * reimplemented service routines
+  * added fix to service routines
+  * added start,stop,restart,reload,force-reload - Service functions
+  * tab to space fix
+  * added hook to enable debug like DEBUG=1; ./programm
+  * added vim style options to sh-lib
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Wed, 21 Dec 2005 21:25:03 +0100
+
 grml-shlib (1.02.05) unstable; urgency=low
 
   * rename
