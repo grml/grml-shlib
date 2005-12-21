@@ -545,7 +545,7 @@ function netGetNameservers
   fi
   
   setCLang
-  ns_=`awk '/^nameserver/{printf "%s ",$2}' $file_`
+  ns_=`awk '/^nameserver/{printf "%s ",$2}' $file_ |xargs echo`
   restoreLang
   if [ -z "$ns_" ]; then
     if [ -z "$message_" ]; then
@@ -703,7 +703,7 @@ function _setDebugLevel
   local debug_="${DEBUG:-0}"
   VERBOSE__="$debug_"
 }
-_checkBootParam
+_setDebugLevel
 # }}}
 
 # END OF FILE
