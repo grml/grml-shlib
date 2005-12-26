@@ -37,15 +37,15 @@ TODO.gz: TODO
 
 install: all
 	$(install_) -d -m 755 $(usrdoc)
-	$(install_) -m 644 $(name_).1.html $(usrdoc)
+	$(install_) -m 644 $(name_).3.html $(usrdoc)
 	$(install_) -m 644 TODO.gz $(usrdoc)
 
 	$(install_) -d -m 755 $(man3)
-	$(install_) -m 644 $(name_).1.gz $(man3)
+	$(install_) -m 644 $(name_).3.gz $(man3)
 
-	$(install_) -m 755 -d /etc/grml
-	$(install_) -m 755 sh-lib /etc/grml
+	$(install_) -m 755 -d ${DESTDIR}/etc/grml
+	$(install_) -m 755 sh-lib ${DESTDIR}/etc/grml
 
 clean:
-	rm -rf $(name_).1.html $(name_).1.xml $(name_).1 $(name_).1.gz
+	rm -rf $(name_).3.html $(name_).3.xml $(name_).3 $(name_).3.gz TODO.gz
 
