@@ -1,3 +1,10 @@
+grml-shlib (1.02.07) unstable; urgency=low
+
+  * changed build system
+  * added Manpage 
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Mon, 26 Dec 2005 21:31:32 +0100
+
 grml-shlib (1.02.06) unstable; urgency=low
 
   * trim the list of nameservers from netGetNameserers (no ending whitespace)

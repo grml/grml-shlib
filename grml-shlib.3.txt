@@ -1,0 +1,30 @@
+GRML-SHLIB(3)
+=============
+Michael Gebetsroither <michael.geb@gmx.at>
+
+NAME
+----
+grml-shlib - Shell script library
+
+
+SYNOPSIS
+--------
+*source /etc/grml/shlib*
+
+
+DESCRIPTION
+-----------
+*grml-shlib* is a Shell script library
+
+
+SEE ALSO
+--------
+/etc/grml/sh-lib
+
+
+AUTHOR
+------
+grml-shlib was written by Michael Gebetsroither <michael.geb@gmx.at>.
+
+This manual page was written by Michael Gebetsroither <gebi@grml.org>.
+
