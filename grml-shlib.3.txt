@@ -14,12 +14,12 @@ SYNOPSIS
 
 DESCRIPTION
 -----------
-*grml-shlib* is a Shell script library
+*grml-shlib* is a Shell script library with integrated debugging support.
 
 
 SEE ALSO
 --------
-/etc/grml/sh-lib
+/usr/share/doc/grml-shlib/, /etc/grml/sh-lib
 
 
 AUTHOR
