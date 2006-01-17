@@ -306,6 +306,16 @@ function checkRoot
   checkId 0 "$1" "$2"
 }
 
+function isGrml
+{
+  if [ -f /etc/grml_version ] ; then 
+    dprint "isGrml(): this seems to be a grml system"
+    return 0                       
+  else                               
+    dprint "isGrml(): this is not a grml system"
+    return 1                       
+  fi                                 
+}
 
 function runsFromHd
 {
