@@ -1,6 +1,12 @@
+grml-shlib (1.02.10) unstable; urgency=low
+
+  * another service routine related fix (sorry)
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Thu, 16 Feb 2006 13:18:43 +0100
+
 grml-shlib (1.02.09) unstable; urgency=low
 
-  * renamed function force-reloadService to forcereloadService
+  * renamed function force-reloadService to forceReloadService
 
  -- Michael Gebetsroither <michael.geb@gmx.at>  Thu, 16 Feb 2006 12:35:54 +0100
 
