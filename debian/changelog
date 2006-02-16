@@ -1,6 +1,10 @@
 grml-shlib (1.02.08) unstable; urgency=low
 
-  * fixed problem with bash as /bin/sh (thanks at mika for reporting) 
+  * Workaround the '/etc/grml/sh-lib: line 622: `force-reloadService':
+    not valid identifier' problem. Notice to workaround:
+    'force-reloadService' has been removed from sh-lib, it requires
+    modifications to work with /bin/sh pointing to /bin/bash.
+  * Added myself as Uploader to debian/control.
 
  -- Michael Gebetsroither <michael.geb@gmx.at>  Thu, 16 Feb 2006 02:11:13 +0100
 
