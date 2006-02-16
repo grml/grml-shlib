@@ -618,9 +618,10 @@ function _touchService
 
 function _createServiceFunctions
 {
-  for i in "start" "stop" "restart" "reload" "forcereload"; do
+  for i in "start" "stop" "restart" "reload"; do
     eval "function ${i}Service { _touchService ${i} \"\$1\" \"\$2\" \"\$3\"; }"
   done
+  eval "function forceReloadService { _touchService force-reload \"\$1\" \"\$2\" \"\$3\"; }"
 }
 _createServiceFunctions
 # }}}
