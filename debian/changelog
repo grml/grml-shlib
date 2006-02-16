@@ -1,3 +1,9 @@
+grml-shlib (1.02.09) unstable; urgency=low
+
+  * renamed function force-reloadService to forcereloadService
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Thu, 16 Feb 2006 12:35:54 +0100
+
 grml-shlib (1.02.08) unstable; urgency=low
 
   * Workaround the '/etc/grml/sh-lib: line 622: `force-reloadService':
