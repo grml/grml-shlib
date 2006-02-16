@@ -1,3 +1,9 @@
+grml-shlib (1.02.08) unstable; urgency=low
+
+  * fixed problem with bash as /bin/sh (thanks at mika for reporting) 
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Thu, 16 Feb 2006 02:11:13 +0100
+
 grml-shlib (1.02.07) unstable; urgency=low
 
   * changed build system
