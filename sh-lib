@@ -177,6 +177,10 @@ function warnLog
 #
 ###
 
+##
+# ATTENTION... THIS FUNCTINOS IS A BIG SECURITY HOLE
+# this function will be changed in future release
+##
 # i don't want to write exit status controle stuff every time
 function execute
 {
@@ -186,6 +190,7 @@ function execute
 
   local ret_=''
 
+  # NOT A GOOD IDEA
   eval "$to_exec_"
   ret_=$?
 
