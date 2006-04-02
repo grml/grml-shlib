@@ -251,7 +251,7 @@ function isNotExistent
 
   if [ -e "$file_to_test_" ]; then
     if [ -z "$message_" ]; then
-      $error_function_ "file does allready exist \"$file_to_test_\"" 67
+      $error_function_ "file does already exist \"$file_to_test_\"" 67
     else
       $error_function_ "$message_"
     fi

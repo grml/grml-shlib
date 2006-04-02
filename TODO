@@ -1,4 +1,4 @@
- * wrapper arround pgrep
+ * wrapper around pgrep
  * execute (secureInput verbessern) @mika
  * getUserName <id> (is this user available on this system)
 
