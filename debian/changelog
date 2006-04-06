@@ -1,3 +1,10 @@
+grml-shlib (1.02.11) unstable; urgency=low
+
+  * a few type corrections
+  * removed gawk from dependencies
+
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Fri,  7 Apr 2006 01:51:26 +0200
+
 grml-shlib (1.02.10) unstable; urgency=low
 
   * another service routine related fix (sorry)

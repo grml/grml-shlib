@@ -8,7 +8,7 @@ Standards-Version: 3.6.2
 
 Package: grml-shlib
 Architecture: all
-Depends: ${misc:Depends}, procps, net-tools, gawk, iproute
+Depends: ${misc:Depends}, procps, net-tools, iproute
 Conflicts: sh-lib
 Replaces: sh-lib
 Description: Generic shell library used in grml scripts
