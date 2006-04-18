@@ -370,6 +370,26 @@ function relToAbs
   echo "$abspath_"
 }
 
+
+# Trim off white-space characters
+# white-space in the "C" and "POSIX" locales are:
+#   space
+#   form-feed ('\f')
+#   newline ('\n')
+#   carriage return ('\r')
+#   horizontal tab ('\t')
+#   vertical tab ('\v')
+function stringTrim
+{
+  local str_="$1"
+  local result_=""
+
+  result_="`echo "$str_" | sed -e 's/^\s*//' -e 's/\s*$//'`" || \
+    warn "stringTrim(): Problems stripping of blanks" || return 1
+  dprint "stringTrim(): \"$str_\" => \"$result_\""
+  echo "$result_"
+}
+
 # Simple shell grep
 function stringInFile
 {
