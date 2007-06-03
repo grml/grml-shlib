@@ -4,7 +4,7 @@
 # Authors:       grml-team (grml.org), (c) Michael Gebetsroither <gebi@grml.org>
 # Bug-Reports:   see http://grml.org/bugs/
 # License:       This file is licensed under the GPL v2.
-# Latest change: Mon May 02 00:17:44 CEST 2005 [gebi]
+# Latest change: Mon Jun 04 01:17:23 CEST 2007 [mika]
 ################################################################################
 
 
@@ -70,7 +70,7 @@ function vprint
   local level_="$1"
   local type_="$2"
   local message_="$3"
-  
+
   if [ $VERBOSE__ -ge $level_ -a -n "$message_" ]; then
     echo -n "$type_" >&2
     echo "$message_" >&2
@@ -152,7 +152,7 @@ function syslog
 {
   local message_="$1"   # error message
   local exit_code_="$2"
-  
+
   if [ -n "$exit_code_" ]; then
     logger -p user.alert -t "$PROG_NAME__" -i "$message_ ret($exit_code_)" >&2
   else
@@ -178,10 +178,10 @@ function warnLog
 ###
 
 ##
-# ATTENTION... THIS FUNCTINOS IS A BIG SECURITY HOLE
+# ATTENTION... THIS FUNCTION IS A BIG SECURITY HOLE
 # this function will be changed in future release
 ##
-# i don't want to write exit status controle stuff every time
+# I don't want to write exit status control stuff every time
 function execute
 {
   local to_exec_="$1"   # command to execute
@@ -313,13 +313,13 @@ function checkRoot
 
 function isGrml
 {
-  if [ -f /etc/grml_version ] ; then 
+  if [ -f /etc/grml_version ] ; then
     dprint "isGrml(): this seems to be a grml system"
-    return 0                       
-  else                               
+    return 0
+  else
     dprint "isGrml(): this is not a grml system"
-    return 1                       
-  fi                                 
+    return 1
+  fi
 }
 
 function runsFromHd
@@ -349,7 +349,7 @@ function runsFromCd
 function secureInput
 {
   local to_secure_="$1"
-  
+
   local secured_=''
 
   secured_=`echo -n "$to_secure_" |tr -c '[:alnum:]/.\-,\(\)' '_'`
@@ -441,10 +441,10 @@ function checkBootParam
 # validates an IP FIXME
 function netValidIp
 {
-  local ip_="$1"    # ip addresse to validate
+  local ip_="$1"    # ip address to validate
   local error_function_=${2:-"eprint"}    # function to call on error
   local message_="$3"    # user supplied error message
-  
+
   local ret_=''
 
   echo "$ip_" | grep -E -q -e '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}.[0-9]{1,3}' \
@@ -452,14 +452,14 @@ function netValidIp
   ret_=$?
   if [ $ret_ -ne 0 ]; then
     if [ -z "$message_" ]; then
-      "$error_function_" "ip-addresse \"$ip_\" is NOT valied" $ret_
+      "$error_function_" "ip-address \"$ip_\" is NOT valid" $ret_
     else
       "$error_function_" "$message_" $ret_
     fi
     return 1
   fi
 
-  dprint "ip-addresse \"$ip_\" is valied" $ret_
+  dprint "ip-address \"$ip_\" is valid" $ret_
   return $ret_
 }
 
@@ -490,10 +490,10 @@ function netGetDefaultGateway
 {
   local error_function_=${1:-"eprint"}    # function to call on error
   local message_="$2"    # user supplied error message
-  
+
   local ip_=''
   local ret_=''
-  
+
   setCLang
   ip_=`route -n | awk '/^0\.0\.0\.0/{print $2; exit}'`
   ret_=$?
@@ -517,10 +517,10 @@ function netGetNetmask
   local iface_="$1"
   local error_function_=${2:-"eprint"}    # function to call on error
   local message_="$3"    # user supplied error message
-  
+
   local nm_=''
   local ret_=''
-  
+
   setCLang
   nm_=`ifconfig "$iface_" | awk '/[Mm]ask/{FS="[:   ]*"; $0=$0; print $8; exit}'`
   ret_=$?
@@ -528,7 +528,7 @@ function netGetNetmask
   if [ -z "$nm_" ]; then
     if [ -z "$message_" ]; then
       "$error_function_" "could not find a netmask for \"$iface_\"" $ret_
-    else 
+    else
       "$error_function_" "$message_" $ret_
     fi
     return 1
@@ -561,16 +561,16 @@ function netGetIp
     fi
     return 1
   fi
-  dprint "addresse for \"$iface_\" is \"$ip_\"" $ret_
+  dprint "address for \"$iface_\" is \"$ip_\"" $ret_
   echo "$ip_"
   return 0
-} 
+}
 
 function netGetNameservers
 {
   local error_function_=${1:-"eprint"}    # function to call on error
   local message_="$2"    # user supplied error message
-  
+
   local file_="/etc/resolv.conf"
   local ns_=""
 
@@ -578,7 +578,7 @@ function netGetNameservers
     warn "file \"$file_\" does not exist, could not get nameservers"
     return 1
   fi
-  
+
   setCLang
   ns_=`awk '/^nameserver/{printf "%s ",$2}' $file_ |xargs echo`
   restoreLang
@@ -625,7 +625,7 @@ function _touchService
   if [ ! -x "$service_path_" ]; then
     warn "_touchService(): service is not executable: \"$service_\""
   fi
-  
+
   local ret_=""
   "$service_path_" "$action_"
   ret_=$?
@@ -660,7 +660,7 @@ function findNextFreeLoop
   local tmp_=''   # tmp
   local i=''      # counter
   local ret_=''   # saved return value
-  
+
   for i in 'losetup' 'losetup.orig'; do
     tmp_=`$i -f 2>/dev/null`
     if [ $? -eq 0 ]; then
@@ -698,10 +698,10 @@ function findNextFreeLoop
 function _initProgName
 {
   local name_="$1"    # program name
-  
+
   local tmp_name_=`basename "$name_"` || \
     logger -p user.alert -i "Init-initProgName: problems executing ( basename \"$name_\" ) ret($?)" >/dev/null
-  
+
   secureInput "$tmp_name_"
 }
 PROG_NAME__=`_initProgName "$0"`
