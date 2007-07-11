@@ -2,6 +2,7 @@ grml-shlib (1.02.13) unstable; urgency=low
 
   * Clean up debian/rules.
   * Bumb Standard Version to 3.7.2 (no further changes).
+  * Update copyright file.
 
  -- Michael Prokop <mika@grml.org>  Wed, 11 Jul 2007 12:24:57 +0200
 
