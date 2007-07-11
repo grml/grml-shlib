@@ -1,9 +1,13 @@
 grml-shlib (1.02.12) unstable; urgency=low
 
+  [ Michael Prokop ]
   * Fixed some typos.
   * Cleanup of whitespaces.
 
- -- Michael Prokop <mika@grml.org>  Mon, 04 Jun 2007 01:17:35 +0200
+  [ Michael Gebetsroither ]
+  * Fixed language environment handling (set LANGUAGE too) 
+
+ -- Michael Gebetsroither <gebi@grml.org>  Wed, 11 Jul 2007 12:10:08 +0200
 
 grml-shlib (1.02.11) unstable; urgency=low
 

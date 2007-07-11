@@ -4,7 +4,6 @@
 # Authors:       grml-team (grml.org), (c) Michael Gebetsroither <gebi@grml.org>
 # Bug-Reports:   see http://grml.org/bugs/
 # License:       This file is licensed under the GPL v2.
-# Latest change: Mon Jun 04 01:17:23 CEST 2007 [mika]
 ################################################################################
 
 
@@ -30,6 +29,7 @@ CMD_LINE__=""   # /proc/cmdline
 
 LANG__="$LANG"
 LC_ALL__="$LC_ALL"
+LANGUAGE__="$LANGUAGE"
 
 
 # CONFIG FUNCTIONS  {{{
@@ -41,9 +41,9 @@ function setExitFunction  { EXIT_FUNCTION__="$1"; }
 function disableSyslog  { SYSLOG__="NO";  }
 function enableSyslog   { SYSLOG__="YES"; }
 
-function saveLang { LANG__="$LANG"; LC_ALL__="$LC_ALL"; }
-function restoreLang { LANG="$LANG__"; LC_ALL="$LC_ALL__"; }
-function setCLang { saveLang; LANG="C"; LC_ALL="C"; }
+function saveLang { LANG__="$LANG"; LC_ALL__="$LC_ALL"; LANGUAGE__="$LANGUAGE"; }
+function restoreLang { LANG="$LANG__"; LC_ALL="$LC_ALL__"; LANGUAGE="$LANGUAGE__"; }
+function setCLang { saveLang; LANG="C"; LC_ALL="C"; LANGUAGE="C"; }
 # }}}
 
 
