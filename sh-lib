@@ -178,8 +178,7 @@ function warnLog
 ###
 
 ##
-# ATTENTION... THIS FUNCTION IS A BIG SECURITY HOLE
-# this function will be changed in future release
+# ATTENTION... THIS FUNCTION _HAS_ CHANGED NOW!
 ##
 # I don't want to write exit status control stuff every time
 function execute
@@ -190,8 +189,10 @@ function execute
 
   local ret_=''
 
-  # NOT A GOOD IDEA
-  eval "$to_exec_"
+  # WARNING API CHANGE!
+  local bin_="${to_exec_%% *}"
+  local args_="${to_exec_#* }"
+  "$bin_" "$args_"
   ret_=$?
 
   if [ $ret_ -eq 127 ]; then
