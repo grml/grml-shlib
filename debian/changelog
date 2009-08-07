@@ -1,3 +1,9 @@
+grml-shlib (1.1.0) unstable; urgency=low
+
+  * Fix bashisms.
+
+ -- Michael Prokop <mika@grml.org>  Fri, 07 Aug 2009 12:40:02 +0200
+
 grml-shlib (1.02.13) unstable; urgency=low
 
   * Clean up debian/rules.

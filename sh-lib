@@ -6,7 +6,7 @@
 # License:       This file is licensed under the GPL v2.
 ################################################################################
 
-
+# VARIABLES {{{
 VERBOSE__=0
 VERBOSE_TMP__=0
 
@@ -30,42 +30,40 @@ CMD_LINE__=""   # /proc/cmdline
 LANG__="$LANG"
 LC_ALL__="$LC_ALL"
 LANGUAGE__="$LANGUAGE"
-
+# }}}
 
 # CONFIG FUNCTIONS  {{{
 
-function setProgName  { PROG_NAME__="$1"; }
+setProgName() { PROG_NAME__="$1"; }
 
-function setExitFunction  { EXIT_FUNCTION__="$1"; }
+setExitFunction() { EXIT_FUNCTION__="$1"; }
 
-function disableSyslog  { SYSLOG__="NO";  }
-function enableSyslog   { SYSLOG__="YES"; }
+disableSyslog() { SYSLOG__="NO";  }
+enableSyslog() { SYSLOG__="YES"; }
 
-function saveLang { LANG__="$LANG"; LC_ALL__="$LC_ALL"; LANGUAGE__="$LANGUAGE"; }
-function restoreLang { LANG="$LANG__"; LC_ALL="$LC_ALL__"; LANGUAGE="$LANGUAGE__"; }
-function setCLang { saveLang; LANG="C"; LC_ALL="C"; LANGUAGE="C"; }
+saveLang() { LANG__="$LANG"; LC_ALL__="$LC_ALL"; LANGUAGE__="$LANGUAGE"; }
+restoreLang() { LANG="$LANG__"; LC_ALL="$LC_ALL__"; LANGUAGE="$LANGUAGE__"; }
+setCLang() { saveLang; LANG="C"; LC_ALL="C"; LANGUAGE="C"; }
 # }}}
-
 
 # DEBUG FRAMEWORK  {{{
 
-function setVerbose     { VERBOSE__=${1:-1}; }
-function unsetVerbose   { VERBOSE_TMP__=$VERBOSE__; VERBOSE__=0; }
-function restoreVerbose { VERBOSE__=$VERBOSE_TMP__; }
-function getVerbose     { echo "$VERBOSE__"; }
+setVerbose()     { VERBOSE__=${1:-1}; }
+unsetVerbose()   { VERBOSE_TMP__=$VERBOSE__; VERBOSE__=0; }
+restoreVerbose() { VERBOSE__=$VERBOSE_TMP__; }
+getVerbose()     { echo "$VERBOSE__"; }
 
-function setDebug       { setVerbose "$DPRINT__"; }
-function unsetDebug     { restoreVerbose; }
+setDebug()       { setVerbose "$DPRINT__"; }
+unsetDebug()     { restoreVerbose; }
 
-function setExitFunction    { EXIT_FUNCTION__="$1"; }
-function resetExitFunction  { EXIT_FUNCTION__="_syslog"; }
+setExitFunction()    { EXIT_FUNCTION__="$1"; }
+resetExitFunction()  { EXIT_FUNCTION__="_syslog"; }
 # }}}
-
 
 # ERROR REPORTING FUNCTIONS  {{{
 
 # default print backend (there may be other functions)
-function vprint
+vprint()
 {
   local level_="$1"
   local type_="$2"
@@ -78,7 +76,7 @@ function vprint
 }
 
 # print error output
-function eprint
+eprint()
 {
   # FIXME vprint should be a var, because we want to call user-defined functions
   # global var (there should be a syslog, and vprint + syslog function)
@@ -86,24 +84,24 @@ function eprint
 }
 
 # should be used for intern silentExecutes
-function eeprint
+eeprint()
 {
   vprint $EEPRINT__ "  Error2 - " "$1"
 }
 
 # print debug output (function intern errors)
-function dprint
+dprint()
 {
   vprint $DPRINT__ "Debug - " "$1"
 }
 
 # for program notice messages
-function notice
+notice()
 {
   vprint $EPRINT__ "Notice - " "$1"
 }
 
-function die
+die()
 {
   local error_message_="$1"   # print this error message
   local exit_code_="$2"  # command exited with this exit code
@@ -121,7 +119,7 @@ function die
   kill $$
 }
 
-function warn
+warn()
 {
   local error_message_="$1"   # print this error message
   local exit_code_="$2"  # command exits with this exit code
@@ -134,7 +132,7 @@ function warn
   fi
 }
 
-function _syslog
+_syslog()
 {
   local message_="$1"   # error message
   local exit_code_="$2"
@@ -148,7 +146,7 @@ function _syslog
   fi
 }
 
-function syslog
+syslog()
 {
   local message_="$1"   # error message
   local exit_code_="$2"
@@ -160,7 +158,7 @@ function syslog
   fi
 }
 
-function warnLog
+warnLog()
 {
   local error_message_="$1"   # print this error message
   local exit_code_="$2"  # command exits with this exit code
@@ -170,19 +168,14 @@ function warnLog
 }
 # }}}
 
-
-###
-#
-# CORE FUNCTIONS
-#
-###
+# CORE FUNCTIONS {{{
 
 ##
 # ATTENTION... THIS FUNCTION IS A BIG SECURITY HOLE
 # this function will be changed in future release
 ##
 # I don't want to write exit status control stuff every time
-function execute
+execute()
 {
   local to_exec_="$1"   # command to execute
   local error_function_=${2:-"eprint"}    # function to call on error
@@ -208,7 +201,7 @@ function execute
   return $ret_
 }
 
-function silentExecute
+silentExecute()
 {
   unsetVerbose
   execute "$@"
@@ -225,7 +218,7 @@ function silentExecute
 ###
 
 # if the file DOES exist, everything is fine
-function isExistent
+isExistent()
 {
   local file_to_test_="$1"    # file to test
   local error_function_=${2:-"eprint"}    # function to call on error
@@ -243,7 +236,7 @@ function isExistent
   return 0
 }
 
-function isNotExistent
+isNotExistent()
 {
   local file_to_test_="$1"    # file to test
   local error_function_=${2:-"eprint"}    # function to call on error
@@ -262,7 +255,7 @@ function isNotExistent
 }
 
 
-function checkUser
+checkUser()
 {
   local to_check_="$1"    # username to check against running process
   local error_function_=${2:-"eprint"}    # function to call on error
@@ -284,7 +277,7 @@ function checkUser
   fi
 }
 
-function checkId
+checkId()
 {
   local to_check_="$1"    # user-id to check against running process
   local error_function_=${2:-"eprint"}    # function to call on error
@@ -306,12 +299,12 @@ function checkId
   fi
 }
 
-function checkRoot
+checkRoot()
 {
   checkId 0 "$1" "$2"
 }
 
-function isGrml
+isGrml()
 {
   if [ -f /etc/grml_version ] ; then
     dprint "isGrml(): this seems to be a grml system"
@@ -322,7 +315,7 @@ function isGrml
   fi
 }
 
-function runsFromHd
+runsFromHd()
 {
   if [ -e "/etc/grml_cd" ]; then
     dprint "runsFromHd(): grml is on CD"
@@ -333,7 +326,7 @@ function runsFromHd
   fi
 }
 
-function runsFromCd
+runsFromCd()
 {
   if [ -e "/etc/grml_cd" ]; then
     dprint "runsFromCd(): grml is on CD"
@@ -346,7 +339,7 @@ function runsFromCd
 
 
 # secure input from console
-function secureInput
+secureInput()
 {
   local to_secure_="$1"
 
@@ -359,7 +352,7 @@ function secureInput
 
 
 # convert all possible path formats to absolute paths
-function relToAbs
+relToAbs()
 {
   local relpath_="$1"
   local abspath_=''
@@ -379,7 +372,7 @@ function relToAbs
 #   carriage return ('\r')
 #   horizontal tab ('\t')
 #   vertical tab ('\v')
-function stringTrim
+stringTrim()
 {
   local str_="$1"
   local result_=""
@@ -391,7 +384,7 @@ function stringTrim
 }
 
 # Simple shell grep
-function stringInFile
+stringInFile()
 {
   local to_test_="$1"   # matching pattern
   local source_="$2"    # source-file to grep
@@ -406,7 +399,7 @@ function stringInFile
 }
 
 # same for strings
-function stringInString
+stringInString()
 {
   local to_test_="$1"   # matching pattern
   local source_="$2"    # string to search in
@@ -416,7 +409,7 @@ function stringInString
 }
 
 # get value for bootparam given as first param
-function getBootParam
+getBootParam()
 {
   local param_to_search_="$1"
   local result_=''
@@ -429,17 +422,17 @@ function getBootParam
 }
 
 # Check boot commandline for specified option
-function checkBootParam
+checkBootParam()
 {
   stringInString " $1" "$CMD_LINE__"
   return "$?"
 }
-
+# }}}
 
 # NETWORK  {{{
 
 # validates an IP FIXME
-function netValidIp
+netValidIp()
 {
   local ip_="$1"    # ip address to validate
   local error_function_=${2:-"eprint"}    # function to call on error
@@ -448,7 +441,7 @@ function netValidIp
   local ret_=''
 
   echo "$ip_" | grep -E -q -e '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}.[0-9]{1,3}' \
-    &>/dev/null
+    1>/dev/null 2>&1
   ret_=$?
   if [ $ret_ -ne 0 ]; then
     if [ -z "$message_" ]; then
@@ -463,7 +456,7 @@ function netValidIp
   return $ret_
 }
 
-function netGetIfaces
+netGetIfaces()
 {
   local error_function_=${1:-"eprint"}    # function to call on error
   local message_="$2"    # user supplied error message
@@ -486,7 +479,7 @@ function netGetIfaces
 }
 
 # FIXME
-function netGetDefaultGateway
+netGetDefaultGateway()
 {
   local error_function_=${1:-"eprint"}    # function to call on error
   local message_="$2"    # user supplied error message
@@ -512,7 +505,7 @@ function netGetDefaultGateway
 }
 
 # FIXME
-function netGetNetmask
+netGetNetmask()
 {
   local iface_="$1"
   local error_function_=${2:-"eprint"}    # function to call on error
@@ -539,7 +532,7 @@ function netGetNetmask
 }
 
 # FIXME
-function netGetIp
+netGetIp()
 {
   local iface_="$1"
   local error_function_=${2:-"eprint"}    # function to call on error
@@ -566,7 +559,7 @@ function netGetIp
   return 0
 }
 
-function netGetNameservers
+netGetNameservers()
 {
   local error_function_=${1:-"eprint"}    # function to call on error
   local message_="$2"    # user supplied error message
@@ -598,7 +591,7 @@ function netGetNameservers
 # }}}
 
 # SERVICES {{{
-function _touchService
+_touchService()
 {
   local action_="${1:-"start"}"
   local service_="$2"
@@ -608,7 +601,7 @@ function _touchService
   local i=""
   local known_action_='false'
   for i in "start" "stop" "restart" "reload" "force-reload"; do
-    if [[ $i == $action_ ]]; then
+    if [ "$i" = "$action_" ]; then
       known_action_='true'
       break
     fi
@@ -629,7 +622,7 @@ function _touchService
   local ret_=""
   "$service_path_" "$action_"
   ret_=$?
-  if [[ $ret_ != 0 ]]; then
+  if [ "$ret_" != "0" ]; then
     if [ -z "$message_" ]; then
       "$error_function_" "Problems ${action_}ing service \"$service_\"" $ret_
     else
@@ -641,18 +634,19 @@ function _touchService
   return 0
 }
 
-function _createServiceFunctions
+_createServiceFunctions()
 {
   for i in "start" "stop" "restart" "reload"; do
-    eval "function ${i}Service { _touchService ${i} \"\$1\" \"\$2\" \"\$3\"; }"
+    eval "${i}Service() { _touchService ${i} \"\$1\" \"\$2\" \"\$3\"; }"
   done
-  eval "function forceReloadService { _touchService force-reload \"\$1\" \"\$2\" \"\$3\"; }"
+  eval "forceReloadService() { _touchService force-reload \"\$1\" \"\$2\" \"\$3\"; }"
 }
 _createServiceFunctions
 # }}}
 
-# prints the next free /dev/loop* to stdout
-function findNextFreeLoop
+# LOSETUP HELPER FUNCTION {{{
+# print next free /dev/loop* to stdout
+findNextFreeLoop()
 {
   local error_function_=${1:-"eprint"}    # function to call on error
   local message_="$2"    # user supplied error message
@@ -673,7 +667,7 @@ function findNextFreeLoop
   dprint 'findNextFreeLoop(): losetup does not recognice option -f, searching next free loop device'
   for i in `seq 0 100`; do
     test -e /dev/loop$i || continue
-    losetup /dev/loop$i &>/dev/null
+    losetup /dev/loop$i >/dev/null 2>&1
     ret_=$?
     case "$ret_" in
       2) continue ;;  # losetup could not get status of loopdevice (EPERM)
@@ -691,11 +685,11 @@ function findNextFreeLoop
   fi
   return 1
 }
-
+# }}}
 
 # INIT {{{
 
-function _initProgName
+_initProgName()
 {
   local name_="$1"    # program name
 
@@ -707,11 +701,11 @@ function _initProgName
 PROG_NAME__=`_initProgName "$0"`
 
 
-function _checkExecutables
+_checkExecutables()
 {
   local tmp_=""
   for i in tr dirname basename id logger kill cat grep route awk ifconfig; do
-    type -p $i &>/dev/null || tmp_="${tmp_}$i "
+    which $i >/dev/null 2>&1 || tmp_="${tmp_}$i "
   done
   if [ -n "$tmp_" ]; then
     eprint "Init-checkExecutables: following executables not found or not executable:\n$tmp_"
@@ -721,7 +715,7 @@ function _checkExecutables
 _checkExecutables
 
 
-function _checkBootParam
+_checkBootParam()
 {
   local path_="/proc/cmdline"
   if [ -e "$path_" ]; then
@@ -734,7 +728,7 @@ function _checkBootParam
 _checkBootParam
 
 
-function _setDebugLevel
+_setDebugLevel()
 {
   local debug_="${DEBUG:-0}"
   VERBOSE__="$debug_"
