@@ -69,7 +69,7 @@ vprint()
   local type_="$2"
   local message_="$3"
 
-  if [ $VERBOSE__ -ge $level_ -a -n "$message_" ]; then
+  if [ "$VERBOSE__" -ge "$level_" -a -n "$message_" ]; then
     echo -n "$type_" >&2
     echo "$message_" >&2
   fi
@@ -285,8 +285,8 @@ checkId()
 
   local user_id_=''
 
-  user_id_=`id -u`
-  if [ $user_id_ != "$to_check_" ]; then
+  user_id_=$(id -u)
+  if [ "$user_id_" != "$to_check_" ]; then
     if [ -z "$message_" ]; then
       $error_function_ "UID \"$user_id_\" is not \"$to_check_\"" 77
     else
@@ -727,10 +727,14 @@ _checkBootParam()
 }
 _checkBootParam
 
-
 _setDebugLevel()
 {
-  local debug_="${DEBUG:-0}"
+  # accept only integer as arguments
+  if echo "$DEBUG" | grep -E -q '^[0-9]+$' ; then
+    local debug_="${DEBUG:-0}"
+  else
+    local debug_="0"
+  fi
   VERBOSE__="$debug_"
 }
 _setDebugLevel

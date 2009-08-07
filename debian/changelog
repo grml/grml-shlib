@@ -1,15 +1,17 @@
 grml-shlib (1.03.1) unstable; urgency=low
 
   * Fix bashisms.
+  * Make sure to accept only integers in _setDebugLevel().
   * Debian packaging updates:
     - Update build-depend to dh >=5
     - Bump Standard-Version to 3.8.2 (no further changes)
     - Switch binary-indep/binary-arch
     - Adjust long description
     - Bump compat version to 5
+    - Adjust VCS headers
     - Adjust copyright file (reference specific GPL version)
 
- -- Michael Prokop <mika@grml.org>  Fri, 07 Aug 2009 12:49:09 +0200
+ -- Michael Prokop <mika@grml.org>  Fri, 07 Aug 2009 13:35:19 +0200
 
 grml-shlib (1.02.13) unstable; urgency=low
 
