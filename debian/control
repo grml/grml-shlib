@@ -3,11 +3,11 @@ Section: grml
 Priority: optional
 Maintainer: Michael Gebetsroither <gebi@grml.org>
 Uploaders: Michael Prokop <mika@grml.org>
-Build-Depends: debhelper (>= 4.0.0)
-Standards-Version: 3.7.2
-Homepage: http://hg.grml.org/grml-shlib/
-XS-Vcs-hg: http://hg.grml.org/grml-shlib/
-XS-Vcs-Browser: http://hg.grml.org/grml-shlib/
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.8.2
+Homepage: http://git.grml.org/?p=grml-shlib.git
+Vcs-git: git://git.grml.org/grml-shlib.git
+Vcs-Browser: http://git.grml.org/?p=grml-shlib.git
 
 Package: grml-shlib
 Architecture: all
@@ -15,6 +15,5 @@ Depends: ${misc:Depends}, procps, net-tools, iproute
 Conflicts: sh-lib
 Replaces: sh-lib
 Description: Generic shell library used in grml scripts
- The grml-shlib is developed for use with zsh, partially tested
- with bash. It's meant as generic shell library for use in
+ The grml-shlib is meant as generic shell library for use in
  grml scripts.

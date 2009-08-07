@@ -36,12 +36,12 @@ install: build
 	# Add here commands to install the package into debian/sh-lib.
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/grml-shlib
 
-# Build architecture-independent files here.
-binary-indep: build install binary-arch
-# We have nothing to do by default.
-
 # Build architecture-dependent files here.
 binary-arch: build install
+# We have nothing to do by default.
+
+# Build architecture-independent files here.
+binary-indep: build install binary-arch
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs
