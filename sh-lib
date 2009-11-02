@@ -6,6 +6,8 @@
 # License:       This file is licensed under the GPL v2.
 ################################################################################
 
+. /usr/lib/grml/core.sh
+
 # VARIABLES {{{
 VERBOSE__=0
 VERBOSE_TMP__=0
@@ -24,8 +26,6 @@ DPRINT__=3    # dprint (debug print)
 EXIT_FUNCTION__="_syslog"    # function to call upon die (can be set by user)
 
 SYSLOG__="YES"
-
-CMD_LINE__=""   # /proc/cmdline
 
 LANG__="$LANG"
 LC_ALL__="$LC_ALL"
@@ -411,20 +411,14 @@ stringInString()
 # get value for bootparam given as first param
 getBootParam()
 {
-  local param_to_search_="$1"
-  local result_=''
-
-  stringInString " $param_to_search_=" "$CMD_LINE__" || return 1
-  result_="${CMD_LINE__##*$param_to_search_=}"
-  result_="${result_%%[   ]*}"
-  echo "$result_"
-  return 0
+  getbootparam $1
+  return "$?"
 }
 
 # Check boot commandline for specified option
 checkBootParam()
 {
-  stringInString " $1" "$CMD_LINE__"
+  checkbootparam $1
   return "$?"
 }
 # }}}
@@ -714,18 +708,6 @@ _checkExecutables()
 }
 _checkExecutables
 
-
-_checkBootParam()
-{
-  local path_="/proc/cmdline"
-  if [ -e "$path_" ]; then
-    CMD_LINE__=`execute "cat $path_" warnLog`
-    return 0
-  fi
-  warnLog "$path_ does not exist, thus sh-lib may not work reliable!"
-  return 1
-}
-_checkBootParam
 
 _setDebugLevel()
 {

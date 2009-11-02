@@ -11,7 +11,7 @@ Vcs-Browser: http://git.grml.org/?p=grml-shlib.git
 
 Package: grml-shlib
 Architecture: all
-Depends: ${misc:Depends}, procps, net-tools, iproute
+Depends: ${misc:Depends}, procps, net-tools, iproute, grml-core
 Conflicts: sh-lib
 Replaces: sh-lib
 Description: Generic shell library used in grml scripts
