@@ -12,7 +12,7 @@ Bugs: mailto:bugs@grml.org
 
 Package: grml-shlib
 Architecture: all
-Depends: ${misc:Depends}, procps, net-tools, iproute
+Depends: ${misc:Depends}, procps, net-tools, iproute2 | iproute
 Conflicts: sh-lib
 Replaces: sh-lib
 Description: Generic shell library used in grml scripts
