@@ -1,3 +1,22 @@
+grml-shlib (1.04.1) unstable; urgency=medium
+
+  [ Michael Prokop ]
+  * [5bebea9] Bump Standards-Version to 3.9.2.
+  * [47e8350] Add asciidoc, xsltproc, docbook-xsl to Build-Depends
+  * [d21ef82] Bump Standards-Version to 3.9.4
+  * [ddf2d88] Take over Maintainer field
+  * [f462443] Support iproute2 as alternative to iproute
+  * [8df768e] Bump Standards-Version to 4.1.1
+  * [33e1c3a] Adjust netGetNetmask for new net-tools output, switch
+    netGetIp from ifconfig to ip. Thanks to karlh1 + Patrick Neumann for
+    the bug report
+  * [adadf04] Bump debian/compat to 9
+
+  [ Christian Hofstaedtler ]
+  * [5d26916] Add debian/control headers Origin, Bugs
+
+ -- Michael Prokop <mika@grml.org>  Fri, 06 Oct 2017 13:45:00 +0200
+
 grml-shlib (1.03.1) unstable; urgency=low
 
   * Fix bashisms.
