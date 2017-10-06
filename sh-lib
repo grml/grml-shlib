@@ -515,7 +515,11 @@ netGetNetmask()
   local ret_=''
 
   setCLang
-  nm_=`ifconfig "$iface_" | awk '/[Mm]ask/{FS="[:   ]*"; $0=$0; print $8; exit}'`
+  if ifconfig "$iface_" | grep -qi 'Mask:' ; then # old ifconfig output:
+    nm_=$(ifconfig "$iface_" | awk '/[Mm]ask/{FS="[:   ]*"; $0=$0; print $8; exit}')
+  else # new ifconfig output (net-tools >1.60-27):
+    nm_=$(ifconfig "$iface_" | awk '/netmask/{print $4}')
+  fi
   ret_=$?
   restoreLang
   if [ -z "$nm_" ]; then
@@ -542,8 +546,7 @@ netGetIp()
   local ret_=""
 
   setCLang
-  #ip_=`ip addr list eth0 |mawk '/inet/{split($2,A,"/"); print A[1]}'`
-  ip_=`ifconfig "$iface_" | awk '/[Ii]net [Aa]ddr/{FS="[:  ]*"; $0=$0; print $4; exit}'`
+  ip_=$(ip addr show dev "$iface_" | awk '/inet /{split($2,a,"/"); print a[1]}')
   ret_=$?
   restoreLang
   if [ -z "$ip_" ]; then
