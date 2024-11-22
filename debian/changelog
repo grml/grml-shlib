@@ -1,3 +1,21 @@
+grml-shlib (1.05.0) unstable; urgency=medium
+
+  [ Chris Hofstaedtler ]
+  * [755bca0] debian: update Vcs-Git and Vcs-Browser
+
+  [ Michael Prokop ]
+  * [6ecc945] d/control: Bump Standards-Version to 4.7.0
+  * [147d8cc] d/control: bump compat version to 13 via debhelper-compat +
+    drop debian/compat
+  * [b895329] debian: wrap-and-sort -tas + drop rempty debian/docs
+  * [23538ac] debian/rules: use minimal debhelper approach
+  * [b97590a] d/control: drop deprecated depends on iproute as alternative
+  * [2a3a5cd] d/control: drop deprecated Conflicts/Replaces
+  * [460d7f0] Add debian/source/format
+  * [a14c2ec] Ship debian/gbp.conf for gbp usage
+
+ -- Michael Prokop <mika@grml.org>  Fri, 22 Nov 2024 17:41:47 +0100
+
 grml-shlib (1.04.1) unstable; urgency=medium
 
   [ Michael Prokop ]
