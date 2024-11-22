@@ -2,7 +2,11 @@ Source: grml-shlib
 Section: grml
 Priority: optional
 Maintainer: Michael Prokop <mika@grml.org>
-Build-Depends: debhelper-compat (= 13), asciidoc, xsltproc, docbook-xsl
+Build-Depends:
+ asciidoc,
+ debhelper-compat (= 13),
+ docbook-xsl,
+ xsltproc,
 Standards-Version: 4.7.0
 Homepage: https://github.com/grml/grml-shlib
 Vcs-Git: https://github.com/grml/grml-shlib.git
@@ -12,9 +16,15 @@ Bugs: mailto:bugs@grml.org
 
 Package: grml-shlib
 Architecture: all
-Depends: ${misc:Depends}, procps, net-tools, iproute2 | iproute
-Conflicts: sh-lib
-Replaces: sh-lib
+Depends:
+ iproute2 | iproute,
+ net-tools,
+ procps,
+ ${misc:Depends},
+Conflicts:
+ sh-lib,
+Replaces:
+ sh-lib,
 Description: Generic shell library used in grml scripts
  The grml-shlib is meant as generic shell library for use in
  grml scripts.
