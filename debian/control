@@ -17,7 +17,7 @@ Bugs: mailto:bugs@grml.org
 Package: grml-shlib
 Architecture: all
 Depends:
- iproute2 | iproute,
+ iproute2,
  net-tools,
  procps,
  ${misc:Depends},
