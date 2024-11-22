@@ -21,10 +21,6 @@ Depends:
  net-tools,
  procps,
  ${misc:Depends},
-Conflicts:
- sh-lib,
-Replaces:
- sh-lib,
 Description: Generic shell library used in grml scripts
  The grml-shlib is meant as generic shell library for use in
  grml scripts.
