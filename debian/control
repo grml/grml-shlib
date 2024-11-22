@@ -2,7 +2,7 @@ Source: grml-shlib
 Section: grml
 Priority: optional
 Maintainer: Michael Prokop <mika@grml.org>
-Build-Depends: debhelper (>= 5), asciidoc, xsltproc, docbook-xsl
+Build-Depends: debhelper-compat (= 13), asciidoc, xsltproc, docbook-xsl
 Standards-Version: 4.7.0
 Homepage: https://github.com/grml/grml-shlib
 Vcs-Git: https://github.com/grml/grml-shlib.git
